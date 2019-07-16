@@ -44,3 +44,9 @@
   color: #43a3e6;
   transition: .2s ease background;
 }
+
+
+#map {
+  height: 500px;
+  width: 100%;
+}

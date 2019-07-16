@@ -1,5 +1,20 @@
 
-<h2>Esta e a nossa pagina principal</h2>
+{{#if user}}
+<a href="/profile">ver meu profile</a>
+{{/if}}
+<h2>O que você gostaria de beber hoje</h2>
+{{#each drink}}
+  {{> drinkCard this}}
+{{/each}}
 
-<a href="/auth/signup">cadastro</a>
-<a href="/auth/login">login</a>
+
+{{#if user}}
+<a href="/logout">logout</a>
+{{else}}
+<a href="/signup">cadastro</a>
+<a href="/login">login</a>
+{{/if}}
+
+
+<h1>Bebidas em destaque</h1>
+

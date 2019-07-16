@@ -1,0 +1,12 @@
+<img src="{{drink.photo}}" alt="">
+<h1>{{drink.name}}</h1>
+
+{{#each drink.ingredients}}
+<ul>
+  <li>{{this}}</li>
+</ul>
+{{/each}}
+
+<h4>Recipe</h4>
+<p>{{drink.recipe}}</p>
+<h3>{{drink.type}}</h3>

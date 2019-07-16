@@ -11,9 +11,12 @@ const MongoStore = require('connect-mongo')(session);
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-// const User = require('../models/user');
-const indexRoutes = require('./routes/index')
-const authRoutes = require('./routes/auth')
+const User = require('./models/user');
+const Drinks = require('./models/drinks');
+const hbs = require('hbs')
+const Picture = require('./models/picture');
+
+
 
 //moongose configuration
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
@@ -35,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // adding flash as error handler middleware
 app.use(flash());
+hbs.registerPartials(__dirname + '/views/partials');
 
 // express session config
 app.use(session({
@@ -63,10 +67,11 @@ passport.deserializeUser((id, cb) => {
 });
 
 
-passport.use(new LocalStrategy({
- passReqToCallback: true
-}, (req, username, password, next) => {
+passport.use('local-login', new LocalStrategy(
+{passReqToCallback: true},
+(req, username, password, next) => {
  User.findOne({ username }, (err, user) => {
+   console.log(user)
    if (err) {
      return next(err);
    }
@@ -76,8 +81,6 @@ passport.use(new LocalStrategy({
    if (!bcrypt.compareSync(password, user.password)) {
      return next(null, false, { message: "Incorrect password" });
    }
-   console.log('session:', user);
-
    return next(null, user);
  });
 }));
@@ -85,8 +88,17 @@ passport.use(new LocalStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
+const indexRoutes = require('./routes/index')
 app.use('/', indexRoutes);
-app.use('/auth', authRoutes);
+
+const authRoutes = require('./routes/auth')
+app.use('/', authRoutes);
+
+const profileRoutes = require('./routes/profile')
+app.use('/', profileRoutes);
+
+const drinksRoutes = require('./routes/drinks')  
+app.use('/', drinksRoutes);
 
 app.listen(process.env.PORT, () => console.log(`server is running on port ${process.env.PORT}`));
 

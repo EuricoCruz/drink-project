@@ -1,0 +1,25 @@
+<h2>Edit my drinques</h2>
+
+<form action="/profile/editProfile/{{user._id}}" method="post">
+  <label>Look this photograph</label>
+  <input type="file" name="photo">
+  <br><br>
+
+  <label for="">Name</label>
+  <input type="text" name="name" value="{{user.title}}">
+<br><br>
+  <label for="">Email</label>
+  <input type="email" name="email" value="{{user.author}}">
+<br><br>
+
+  <label for="">Are you a</label>
+<select name="role">
+  <option value="bartender">Bartender</option> 
+  <option value="drinker">drinker</option>
+</select>>
+
+<br><br>
+  <button type="submit">EDIT</button>
+</form>
+
+<button><a href="">submit</a></button>

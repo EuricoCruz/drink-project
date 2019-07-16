@@ -23,6 +23,10 @@
     </select>
     <br><br>
 
+    {{#if message}}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+
     <button type="submit">Create account</button>
   </form>
 

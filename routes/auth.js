@@ -1,8 +1,11 @@
 const express = require("express");
 const authRoutes = express.Router();
+const drinksRoutes = express.Router();
 const passport = require('passport');
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const Drinks = require('../models/drinks');
+const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 // const nodemailer = require('nodemailer');
 
 // User model
@@ -12,7 +15,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 //signin routes
-authRoutes.get("/signup", (req, res, next) => {
+authRoutes.get("/signup", ensureLoggedOut(), (req, res, next) => {
  res.render("auth/signup");
 });
 
@@ -26,11 +29,14 @@ authRoutes.post("/signup", (req, res, next) => {
   const hashPass = bcrypt.hashSync(password, salt);
 
   if(username === '' || password === '' || email === '' || age === '') {
-    res.render("auth/signup", { message: "You need to fulfill all the fields" });
+    res.render("auth/signup", ensureLoggOut(), { message: "You need to fulfill all the fields" });
     return;
   }
 
-  if()
+  if(age < 18) {
+    res.render("auth/signup", { message: "You need to be at least 18 years old to be part of our comunnity" });
+    return;
+  }
   
   User.findOne({username})
     .then(user => {
@@ -39,9 +45,7 @@ authRoutes.post("/signup", (req, res, next) => {
         return; 
     }
   })
-
-
-
+  
   User.create({username, password: hashPass, email, age, role})
   .then(() => {
     res.redirect("/");
@@ -51,9 +55,24 @@ authRoutes.post("/signup", (req, res, next) => {
   })
 });
 
-authRoutes.get("/login", (req, res, next) => {
+authRoutes.get("/login", ensureLoggedOut(), (req, res, next) => {
   res.render("auth/login");
  });
- 
 
-module.exports = authRoutes
+ authRoutes.post("/login", passport.authenticate("local-login", {
+  successRedirect: "/",
+  failureRedirect: "/login",
+  failureFlash: true,
+  passReqToCallback: true
+}));
+
+// drinksRoutes.get("/drinks", ensureLoggedIn(), (req, res, next) => {
+//   Drinks.find()
+// }
+ 
+authRoutes.get("/logout", ensureLoggedIn(), (req, res) => {
+  req.logout();
+  res.redirect("/login");
+ });
+
+module.exports = authRoutes;
