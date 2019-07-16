@@ -15,7 +15,6 @@ drinksRoutes.get('/edit-drinques', (req, res) => {
   res.render('drinks/editDrinks');
 });
 
-
 drinksRoutes.get('/drink/:id', ensureLoggedIn(), (req, res) => {
   const drinkId = req.params.id;
   Drinks.findById(drinkId)
