@@ -25,13 +25,6 @@ const drinks = [
     recipe: 'Misture tudo em uma coqueteleira e sirva em uma taça flutê.',
     type: 'non alcoholic' 
   },
-  {
-    name: 'Dry Martini', 
-    ingredients: [ '8 cls de Gin', '1 cl de Vermouth Seco',],
-    photo: "xdx", 
-    recipe: 'Para fazer o drink favorito do agente James Bond.',
-    type: 'alcoholic' 
-  },
 ]
 
 

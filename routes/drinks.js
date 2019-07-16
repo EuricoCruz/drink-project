@@ -1,11 +1,9 @@
 const express = require('express');
 const drinksRoutes = express.Router();
 const Drinks = require('../models/drinks');
-// const User = require('../models/user');
-// const Author = require('../models/author');
 const ensureLogin = require('connect-ensure-login');
 const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
-// const uploadCloud = require('../middlewares/cloudinary.js');
+const uploadCloud = require('../public/config/cloudinary');
 
 drinksRoutes.get('/', (req, res) => {
   res.render('drinks/index');
@@ -14,6 +12,11 @@ drinksRoutes.get('/', (req, res) => {
 drinksRoutes.get('/edit-drinques', (req, res) => {
   res.render('drinks/editDrinks');
 });
+drinksRoutes.get('/add-drink', (req, res) => {
+  res.render('drinks/addDrinks');
+});
+
+
 
 
 drinksRoutes.get('/drink/:id', ensureLoggedIn(), (req, res) => {
