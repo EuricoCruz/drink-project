@@ -1,27 +1,44 @@
-<h2>Signup</h2>
+<div class="container">
 
-  <form id="form" action="/signup" method="POST">
-    <label for="username">Username</label><br>
-    <input type="text" name="username"
-      placeholder="Your username">
+ <h1 class="signup-title">Signup</h1>
 
-    <label for="password">Password</label><br>
-    <input type="password" name="password"
-      placeholder="********">
+ <form id="form" action="/signup" method="POST">
+   <label for="username">Username</label>
+   <input type="text" name="username" placeholder="Your username">
 
-    <label for="email">Email</label><br>
-    <input type="email" name="email"
-      placeholder="Enter your email"> 
+   <label for="password">Password</label>
+   <input type="password" name="password" placeholder="********">
 
-    <label for="age">Age</label><br>
-    <input type="number" name="age"
-      placeholder="How old are you?">
+   <label for="email">Email</label>
+   <input type="email" name="email" placeholder="Enter your email">
 
-    <label for="role">Você é um bartender ou um amante dos drinks?</label><select name="role" id="role">
-      <option value="bartender">bartender</option>
-      <option value="drinker">drinker</option>
-    </select>
-    <br><br>
+   <label class="age" for="age">Age</label>
+   <input type="number" name="age" placeholder="How old are you?">
+
+   <label for="role">Are you a bartender or just a drink lover?</label><select name="role" id="role">
+     <option value="bartender">bartender</option>
+     <option value="drinker">drinker</option>
+   </select>
+   <br><br>
+
+   {{#if message}}
+     <div class="error-message">{{ message }}</div>
+   {{/if}}
+
+   <button type="submit">Create account</button>
+ </form>
+
+ <h3><a href="/login">I've already now this app!</a></h3>
+</div>  
+
+    {{!-- <div class="highlight">
+
+ <section class="title">
+   <h1 class="intro-text">Make drinks never been so easy</h1>
+   <h3 class="description">Esta e a nossa pagina principal</h3>
+ </section>
+ <div class="destaque"></div>
+</div> --}}
 
     {{#if message}}
       <div class="error-message">{{ message }}</div>

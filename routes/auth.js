@@ -20,11 +20,7 @@ authRoutes.get("/signup", ensureLoggedOut(), (req, res, next) => {
 });
 
 authRoutes.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const email = req.body.email;
-  const age = req.body.age;
-  const role = req.body.role;
+  const {username, password, email, age, role} = req.body;
   const salt     = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
 

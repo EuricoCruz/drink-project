@@ -1,20 +1,29 @@
 
-{{#if user}}
-<a href="/profile">ver meu profile</a>
-{{/if}}
+<nav>
+ <img src="/images/logo.svg" alt="logo">
+ <div class="menu">
+   <img class="avatar" src="https://www.w3schools.com/w3images/avatar2.png" alt="photo">
+   {{#if user}}
+   <img class="avatar" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/Harry-Potter-1-.jpg" alt="photo">
+   <a href="/logout">logout</a>
+   <a href="/profile">ver meu profile</a>
+
+   {{else}}
+   <a href="/signup">cadastro</a>
+   <a href="/login">login</a>
+   {{/if}}
+
+ </div>
+</nav>
+
 <h2>O que você gostaria de beber hoje</h2>
 {{#each drink}}
   {{> drinkCard this}}
 {{/each}}
 
 
-{{#if user}}
-<a href="/logout">logout</a>
-{{else}}
-<a href="/signup">cadastro</a>
-<a href="/login">login</a>
-{{/if}}
 
 
-<h1>Bebidas em destaque</h1>
+
+
 

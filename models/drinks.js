@@ -7,7 +7,7 @@ const drinkSchema = new Schema({
   photo: {type: String, required: true},
   recipe: String,
   type: {type: String, enum: ['alcoholic', 'non alcoholic'], required: true, }, 
-  Owner: {type: String, default: 'public',}
+  owner: {type: Schema.Types.ObjectId, ref: "User",}
 }, {
   timestamps: true,
 });
