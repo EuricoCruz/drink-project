@@ -3,10 +3,10 @@ const profileRoutes = express.Router();
 const User = require('../models/user');
 // const uploadCloud = require('../middlewares/cloudinary.js');
 const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
+const {uploadCloud, uploadCloudUser} = require('../public/config/cloudinary');
 
 profileRoutes.get('/profile', ensureLoggedIn(), (req, res) => {
   const user = req.user;
-  console.log(user)
   res.render('profile/myProfile', {user})
 });
 
@@ -16,11 +16,12 @@ profileRoutes.get('/edit-profile', ensureLoggedIn(), (req, res) => {
   res.render('profile/editProfile', {user});
 });
 
-profileRoutes.post('/profile/editProfile/:userId', ensureLoggedIn(), (req, res) => {
+profileRoutes.post('/profile/editProfile/:userId', uploadCloudUser.single('photo'), ensureLoggedIn(), (req, res) => {
   const userId = req.params.userId;
-  const {name, email, photo, age, city, profession, phone} = req.body;
-  console.log(userId)
-  User.update({_id: userId}, {$set: {name, email, photo, age, city, profession, phone}})
+  const photo = req.file.secure_url;
+  console.log("qualquer coisa vai aí", req.file)
+  const {name, email, age, city, profession, phone} = req.body;
+  User.update({_id: userId}, {$set: {name, email, photo, age, city, profession, phone, photo}})
   .then(user => res.redirect('/profile'))
   .catch(error => console.log(err))
 })  
