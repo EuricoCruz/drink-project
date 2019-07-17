@@ -9,31 +9,20 @@ drinksRoutes.get('/', (req, res) => {
   res.render('drinks/index');
 });
 
-drinksRoutes.get('/edit-drinques', (req, res) => {
-  res.render('drinks/editDrinks');
-});
 
 drinksRoutes.get('/add-drink', (req, res) => {
   res.render('drinks/addDrinks', {user: req.user});
-});
-
-drinksRoutes.get('/drink/:id', ensureLoggedIn(), (req, res) => {
-  const drinkId = req.params.id;
-  Drinks.findById(drinkId)
-  .then(drink => res.render('drinks/drink', { drink }))
-  .catch(err => console.log(err))
 });
 
 drinksRoutes.post('/drinkAdd', uploadCloud.single('photo'), ensureLoggedIn(), (req, res) => {
   const user = req.user;
   const photo = req.file.secure_url;
   const {name, recipe, ingredients, type, owner} = req.body;
-  console.log(name)
   Drinks.findOne({name})
-    .then(name => {
-      if(name !==  null) {
-        res.render("drinks/addDrink", { message: "This name already exist"})
-        return; 
+  .then(name => {
+    if(name !==  null) {
+      res.render("drinks/addDrink", { message: "This name already exist"})
+      return; 
     }
   })
   
@@ -45,5 +34,44 @@ drinksRoutes.post('/drinkAdd', uploadCloud.single('photo'), ensureLoggedIn(), (r
     console.log(error);
   })
 });
+
+//Params routes
+
+drinksRoutes.get('/drink/:id', ensureLoggedIn(), (req, res) => {
+  const drinkId = req.params.id;
+  const user = req.user;
+  Drinks.findById(drinkId)
+  .then(drink => res.render('drinks/drink', { drink, user }))
+  .catch(err => console.log(err))
+});
+
+drinksRoutes.get('/edit-drink/:id', (req, res) => {
+  const drinkId = req.params.id
+  Drinks.findById(drinkId)
+  .then(drink => res.render('drinks/editDrinks', {drink}))
+  .catch(err => console.log(err))
+});
+
+//update drink
+drinksRoutes.post('/save-edit/:drinkId', uploadCloudUser.single('photo'), ensureLoggedIn(), (req, res) => {
+  const drinkId= req.params.drinkId;
+  const photo = req.file.secure_url;
+  const {name, ingredients, recipe, type} = req.body;
+
+  Drinks.update({_id: drinkId}, {$set: {name, ingredients, photo, recipe, type }})
+  .then(drink => {
+    res.redirect(`/drink/${drinkId}`)
+  })
+  .catch(err => console.log(err))
+})  
+
+
+//delete
+drinksRoutes.get('/delete/:id', ensureLoggedIn(), (req, res) => {
+  const id = req.params.id
+  Drinks.deleteOne({_id: id})
+  .then(res.redirect('/'))
+  .catch(err => console.log(err))
+})
 
 module.exports = drinksRoutes;

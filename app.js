@@ -13,8 +13,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const Drinks = require('./models/drinks');
-const hbs = require('hbs')
-const Picture = require('./models/picture');
+const hbs = require('hbs');
+const nodemailer = require('nodemailer')
 
 
 
@@ -71,7 +71,6 @@ passport.use('local-login', new LocalStrategy(
 {passReqToCallback: true},
 (req, username, password, next) => {
  User.findOne({ username }, (err, user) => {
-   console.log(user)
    if (err) {
      return next(err);
    }
@@ -95,10 +94,10 @@ const authRoutes = require('./routes/auth')
 app.use('/', authRoutes);
 
 const profileRoutes = require('./routes/profile')
-app.use('/', profileRoutes);
+app.use('/profile', profileRoutes);
 
 const drinksRoutes = require('./routes/drinks')  
-app.use('/', drinksRoutes);
+app.use('/drinks', drinksRoutes);
 
 app.listen(process.env.PORT, () => console.log(`server is running on port ${process.env.PORT}`));
 

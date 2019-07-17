@@ -7,13 +7,14 @@
 <h3>telefone: {{user.phone}}</h3>
 <h3>profissão: {{user.profession}}</h3>
 
-<button><a href="edit-profile">editar perfil</a>
+<button><a href="/profile/edit-profile">editar perfil</a>
+<button><a href="/profile/delete/{{user._id}}">delete</a></button>
 </button>
 <hr>
 
 <h1>Meus drinques:</h1>
-  <ul>
-    <li></li>
-  </ul>
+{{#each drink}}
+  {{> drinkCard this}}
+{{/each}}
 {{!-- <button><a href="edit-drinques">editar drinques</a> --}}
 <button><a href="add-drink">adicionar drinque</a>

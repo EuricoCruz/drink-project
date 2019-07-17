@@ -12,6 +12,7 @@ const userSchema = new Schema({
   age: {type: Number, required: true}, 
   city: String, 
   profession: String,
+  confirmationCode: {type: String, unique: true},
 }, {
   timestamps: {createdAt: "created_at", updatedAt: "update_at"},
 });

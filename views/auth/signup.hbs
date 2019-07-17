@@ -2,7 +2,7 @@
 
  <h1 class="signup-title">Signup</h1>
 
- <form id="form" action="/signup" method="POST">
+ <form id="form" action="/signup" method="POST" enctype="multipart/form-data">
    <label for="username">Username</label>
    <input type="text" name="username" placeholder="Your username">
 
@@ -20,6 +20,10 @@
      <option value="drinker">drinker</option>
    </select>
    <br><br>
+
+  <label>Escolha sua foto de perfil</label>
+  <input type="file" name="photo">
+  <br><br>
 
    {{#if message}}
      <div class="error-message">{{ message }}</div>
@@ -43,8 +47,5 @@
     {{#if message}}
       <div class="error-message">{{ message }}</div>
     {{/if}}
-
-    <button type="submit">Create account</button>
-  </form>
 
   
