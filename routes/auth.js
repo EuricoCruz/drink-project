@@ -6,7 +6,10 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const Drinks = require('../models/drinks');
 const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
-// const nodemailer = require('nodemailer');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const {uploadCloud, uploadCloudUser} = require('../public/config/cloudinary');
+const multer = require('multer')
+const nodemailer = require('nodemailer');
 
 // User model
 // const User = require("../models/user");
@@ -19,14 +22,17 @@ authRoutes.get("/signup", ensureLoggedOut(), (req, res, next) => {
  res.render("auth/signup");
 });
 
-authRoutes.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const email = req.body.email;
-  const age = req.body.age;
-  const role = req.body.role;
+authRoutes.post("/signup", uploadCloudUser.single('photo'), (req, res, next) => {
+  const {username, password, email, age, role} = req.body;
+  const photo = req.file.secure_url;
   const salt     = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
+  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let token = '';
+  for (let i = 0; i < 25; i++) {
+  token += characters[Math.floor(Math.random() * characters.length )];
+  }
+  const confirmationCode = token;
 
   if(username === '' || password === '' || email === '' || age === '') {
     res.render("auth/signup", ensureLoggOut(), { message: "You need to fulfill all the fields" });
@@ -46,14 +52,33 @@ authRoutes.post("/signup", (req, res, next) => {
     }
   })
   
-  User.create({username, password: hashPass, email, age, role})
-  .then(() => {
-    res.redirect("/");
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.mailtrap.io',
+    port: 2525,
+    auth: {
+      user: process.env.NODEMAILER_USER,
+      pass: process.env.NODEMAILER_PASS
+    }
+  })
+
+  User.create({username, password: hashPass, email, age, role, photo, confirmationCode})
+  .then(() => { 
+    transporter.sendMail({
+      from: '"DrinkBuddy Managers 👻" <drinkbuddy@admin.com>',
+      to: email,
+      subject: 'Welcome to DrinkBuddy! Please confirm your account.',
+      text: `Hi, there!
+      Welcome to Servo-Service, the premier service for services!
+      http://localhost:9999/auth/confirm/${confirmationCode}`,
+      html: `<a href="http://localhost:9999/auth/confirm/${confirmationCode}">here</a> to confirm your account.</p>`,
+    })
+    .then(() => res.redirect("/"))
+    .catch((err) => console.log(err))
   })
   .catch(error => {
     console.log(error);
   })
-});
+})
 
 authRoutes.get("/login", ensureLoggedOut(), (req, res, next) => {
   res.render("auth/login");

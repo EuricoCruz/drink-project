@@ -1,20 +1,28 @@
 
-{{#if user}}
-<a href="/profile">ver meu profile</a>
-{{/if}}
+<nav>
+ <img src="/images/logo.svg" alt="logo">
+ <div class="menu">
+  {{#if user}}
+   <img class="avatar" src="{{user.photo}}" alt="photo">
+   <a href="/logout">logout</a>
+   <a href="/profile">ver meu profile</a>
+
+   {{else}}
+   <a href="/signup">cadastro</a>
+   <a href="/login">login</a>
+   {{/if}}
+
+ </div>
+</nav>
+
 <h2>O que você gostaria de beber hoje</h2>
 {{#each drink}}
   {{> drinkCard this}}
 {{/each}}
 
 
-{{#if user}}
-<a href="/logout">logout</a>
-{{else}}
-<a href="/signup">cadastro</a>
-<a href="/login">login</a>
-{{/if}}
 
 
-<h1>Bebidas em destaque</h1>
+
+
 

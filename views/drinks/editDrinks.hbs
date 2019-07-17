@@ -1,25 +1,30 @@
-<h2>Edit my drinques</h2>
+<h2>Vamos modificar o seu drink</h2>
 
-<form action="/profile/editProfile/{{user._id}}" method="post">
-  <label>Look this photograph</label>
+<form action="/save-edit/{{drink._id}}" method="post" enctype="multipart/form-data">
+  
+  <label for="">name:</label>
+  <input type="text" name="name" value="{{drink.name}}">
+<br><br>
+ 
+  <label for="">Recipe:</label>
+  <textarea name="recipe" id="recipe" cols="30" rows="10">{{drink.recipe}}</textarea>
+<br><br>
+
+  <label for="">ingredients:</label>
+  <input type="text" name="ingredients" value="{{drink.ingredients}}">
+<br><br>
+
+  <label>type</label>
+  <select name="type" id="type" value="{{drink.type}}">
+    <option value="alcoholic">alcoholic</option>
+    <option value="non alcoholic">non alcoholic</option>
+  </select>
+  <br><br>
+  {{!-- <img src="{{drink.photo}}" alt=""> --}}
+ 
+  <label>Image</label>
   <input type="file" name="photo">
   <br><br>
-
-  <label for="">Name</label>
-  <input type="text" name="name" value="{{user.title}}">
-<br><br>
-  <label for="">Email</label>
-  <input type="email" name="email" value="{{user.author}}">
-<br><br>
-
-  <label for="">Are you a</label>
-<select name="role">
-  <option value="bartender">Bartender</option> 
-  <option value="drinker">drinker</option>
-</select>>
-
-<br><br>
-  <button type="submit">EDIT</button>
+ 
+  <button type="submit">salvar alterações</button>
 </form>
-
-<button><a href="">submit</a></button>

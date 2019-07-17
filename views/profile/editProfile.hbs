@@ -1,26 +1,31 @@
-
-<h2>Edit my profile</h2>
-
-<form action="/profile/editProfile/{{user._id}}" method="post">
+<form action="/profile/editProfile/{{user._id}}" method="post" enctype="multipart/form-data">
   <label>Look this photograph</label>
   <input type="file" name="photo">
   <br><br>
 
   <label for="">Name</label>
-  <input type="text" name="title" value="{{user.title}}">
+  <input type="text" name="name" value="{{user.name}}">
 <br><br>
+
   <label for="">Email</label>
-  <input type="email" name="email" value="{{user.author}}">
+  <input type="email" name="email" value="{{user.email}}">
 <br><br>
 
-  <label for="">Are you a</label>
-<select name="role">
-  <option value="{{user.role}}">Bartender</option> 
-  <option value="{{user.role}}">drinker</option>
-</select>>
-
+<label for="">Idade</label>
+  <input type="Number" name="age" value="{{user.age}}">
 <br><br>
-  <button type="submit">EDIT</button>
+
+<label for="">Cidade</label>
+  <input type="text" name="city">
+<br><br>
+
+<label for="phone">Telefone</label>
+  <input type="number" name="phone">
+<br><br>
+
+<label for="">Profissão</label>
+  <input type="text" name="profession">
+<br><br>
+
+<button type="sumbmit">Alterar</button>
 </form>
-
-<button><a href="">submit</a></button>

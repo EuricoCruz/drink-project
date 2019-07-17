@@ -8,15 +8,26 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
-var storage = cloudinaryStorage({
+let storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'drinkBuddy', // The name of the folder in cloudinary
-  allowedFormats: ['jpg', 'png'],
+  folder: 'drinkbuddy', // The name of the folder in cloudinary
+  allowedFormats: ['jpg', 'png', 'jpeg'],
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
+    cb(null, file.filename); // The file on cloudinary would have the same name as the original file name
   }
 });
 
 const uploadCloud = multer({ storage: storage });
 
-module.exports = uploadCloud;
+let storageUser = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'userBuddy', // The name of the folder in cloudinary
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(null, file.filename); // The file on cloudinary would have the same name as the original file name
+  }
+});
+
+const uploadCloudUser = multer({ storage: storageUser });
+
+module.exports = {uploadCloud, uploadCloudUser};

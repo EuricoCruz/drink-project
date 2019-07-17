@@ -13,7 +13,6 @@ router.get('/',  (req, res) => {
   .then(drink => {
   const user = req.user
   res.render('index', { drink, user });
-  console.log(drink)
   })
   .catch(err => console.log(err))
 });
