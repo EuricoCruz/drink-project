@@ -91,11 +91,27 @@ authRoutes.get("/login", ensureLoggedOut(), (req, res, next) => {
   passReqToCallback: true
 }));
 
+authRoutes.get("/auth/google", ensureLoggedOut(), passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/plus.profile.emails.read",
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/profile.agerange.read",
+      
+    ]
+  })
+);
+authRoutes.get("/auth/google/callback",ensureLoggedOut(), passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login" // here you would redirect to the login page using traditional login approach
+  })
+);
+
 // drinksRoutes.get("/drinks", ensureLoggedIn(), (req, res, next) => {
 //   Drinks.find()
 // }
  
-authRoutes.get("/logout", ensureLoggedIn(), (req, res) => {
+authRoutes.get("/auth/logout", ensureLoggedIn(), (req, res) => {
   req.logout();
   res.redirect("/login");
  });
