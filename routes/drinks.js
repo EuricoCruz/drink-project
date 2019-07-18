@@ -21,7 +21,7 @@ drinksRoutes.post('/drinkAdd', uploadCloud.single('photo'), ensureLoggedIn(), (r
   Drinks.findOne({name})
   .then(name => {
     if(name !==  null) {
-      res.render("drinks/addDrink", { message: "This name already exist"})
+      res.render("/drinks/addDrink", { message: "This name already exist"})
       return; 
     }
   })

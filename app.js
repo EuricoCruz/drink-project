@@ -103,9 +103,19 @@ passport.use(
             done(null, user);
             return;
           }
-
-          User.create({ googleID: profile.id })
+          
+          const username = profile.name.givenName;
+          const name = profile.displayName;
+          const photo = profile.photos[0].value;
+          let token = '';
+          const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          for(let i = 0; i < 25; i++) {
+          token += characters[Math.floor(Math.random() * characters.length )];
+          }
+          const confirmationCode = token;
+          User.create({ googleID: profile.id, username, photo, name, confirmationCode})
             .then(newUser => {
+              // const photo =  
               done(null, newUser);
             })
             .catch(err => done(err)); // closes User.create()
@@ -122,7 +132,7 @@ const indexRoutes = require('./routes/index')
 app.use('/', indexRoutes);
 
 const authRoutes = require('./routes/auth')
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
 
 const profileRoutes = require('./routes/profile')
 app.use('/profile', profileRoutes);

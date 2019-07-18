@@ -12,7 +12,7 @@ const userSchema = new Schema({
   age: {type: Number,}, 
   city: String, 
   profession: String,
-  confirmationCode: {type: String, unique: true},
+  confirmationCode: String,
   googleID: String,
 }, {
   timestamps: {createdAt: "created_at", updatedAt: "update_at"},

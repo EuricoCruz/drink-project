@@ -24,7 +24,10 @@ authRoutes.get("/signup", ensureLoggedOut(), (req, res, next) => {
 
 authRoutes.post("/signup", uploadCloudUser.single('photo'), (req, res, next) => {
   const {username, password, email, age, role} = req.body;
-  const photo = req.file.secure_url;
+  const photo = undefined;
+  if(req.file) {
+    photo = req.file.secure_url;
+  }
   const salt     = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
   const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -61,7 +64,7 @@ authRoutes.post("/signup", uploadCloudUser.single('photo'), (req, res, next) => 
     }
   })
 
-  User.create({username, password: hashPass, email, age, role, photo, confirmationCode})
+  User.create({username, password: hashPass, email, age, role, photo, confirmationCode}, {omitUndefined: true})
   .then(() => { 
     transporter.sendMail({
       from: '"DrinkBuddy Managers 👻" <drinkbuddy@admin.com>',
@@ -91,7 +94,7 @@ authRoutes.get("/login", ensureLoggedOut(), (req, res, next) => {
   passReqToCallback: true
 }));
 
-authRoutes.get("/auth/google", ensureLoggedOut(), passport.authenticate("google", {
+authRoutes.get("/google", ensureLoggedOut(), passport.authenticate("google", {
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/plus.profile.emails.read",
@@ -101,7 +104,7 @@ authRoutes.get("/auth/google", ensureLoggedOut(), passport.authenticate("google"
     ]
   })
 );
-authRoutes.get("/auth/google/callback",ensureLoggedOut(), passport.authenticate("google", {
+authRoutes.get("/google/callback",ensureLoggedOut(), passport.authenticate("google", {
     successRedirect: "/",
     failureRedirect: "/auth/login" // here you would redirect to the login page using traditional login approach
   })
@@ -111,9 +114,9 @@ authRoutes.get("/auth/google/callback",ensureLoggedOut(), passport.authenticate(
 //   Drinks.find()
 // }
  
-authRoutes.get("/auth/logout", ensureLoggedIn(), (req, res) => {
+authRoutes.get("/logout", ensureLoggedIn(), (req, res) => {
   req.logout();
-  res.redirect("/login");
+  res.redirect("/auth/login");
  });
 
 module.exports = authRoutes;
