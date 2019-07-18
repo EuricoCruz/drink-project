@@ -14,8 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const Drinks = require('./models/drinks');
 const hbs = require('hbs');
-const nodemailer = require('nodemailer')
-
+const nodemailer = require('nodemailer');
 
 
 //moongose configuration
@@ -41,6 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(flash());
 hbs.registerPartials(__dirname + '/views/partials');
+// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // express session config
 app.use(session({
