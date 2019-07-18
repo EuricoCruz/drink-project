@@ -10,6 +10,23 @@
 </head>
 <body>
 
+
+<nav>
+ <img src="/images/logo.svg" alt="logo">
+ <div class="menu">
+  {{#if user}}
+   <img class="avatar" src="{{user.photo}}" alt="photo">
+   <a href="/auth/logout">logout</a>
+   <a href="/profile">ver meu profile</a>
+
+   {{else}}
+   <a href="/auth/signup">cadastro</a>
+   <a href="/auth/login">login</a>
+   {{/if}}
+
+ </div>
+</nav>
+
   {{{body}}}
 
   {{!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDa3UqhwRrfY0W8he-rGEeG-dmAOxjaWtA"></script>
