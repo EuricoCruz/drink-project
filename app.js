@@ -14,6 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const Drinks = require('./models/drinks');
 const hbs = require('hbs');
+const favicon = require("serve-favicon")
 const nodemailer = require('nodemailer')
 
 
