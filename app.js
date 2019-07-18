@@ -37,10 +37,12 @@ app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
 // adding flash as error handler middleware
+
 app.use(flash());
 hbs.registerPartials(__dirname + '/views/partials');
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // express session config
 app.use(session({
