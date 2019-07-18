@@ -14,7 +14,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const Drinks = require('./models/drinks');
 const hbs = require('hbs');
-const favicon = require("serve-favicon")
 const nodemailer = require('nodemailer')
 
 
@@ -37,7 +36,6 @@ app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // adding flash as error handler middleware
 
