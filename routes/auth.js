@@ -97,7 +97,7 @@ authRoutes.get("/login", ensureLoggedOut(), (req, res, next) => {
  
 authRoutes.get("/logout", ensureLoggedIn(), (req, res) => {
   req.logout();
-  res.redirect("/login");
+  res.redirect("/auth/login");
  });
 
 module.exports = authRoutes;

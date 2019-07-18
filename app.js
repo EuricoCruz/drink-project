@@ -92,7 +92,7 @@ const indexRoutes = require('./routes/index')
 app.use('/', indexRoutes);
 
 const authRoutes = require('./routes/auth')
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
 
 const profileRoutes = require('./routes/profile')
 app.use('/profile', profileRoutes);

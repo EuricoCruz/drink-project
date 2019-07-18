@@ -65,7 +65,7 @@ drinksRoutes.post('/save-edit/:drinkId', uploadCloudUser.single('photo'), ensure
 
   Drinks.update({_id: drinkId}, {$set: {name, ingredients, photo, recipe, type }})
   .then(drink => {
-    res.redirect(`/drink/${drinkId}`)
+    res.redirect(`/drinks/drink/${drinkId}`)
   })
   .catch(err => console.log(err))
 })  

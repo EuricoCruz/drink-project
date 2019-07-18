@@ -5,12 +5,12 @@
  <div class="menu">
   {{#if user}}
    <img class="avatar" src="{{user.photo}}" alt="photo">
-   <a href="/logout">logout</a>
+   <a href="/auth/logout">logout</a>
    <a href="/profile">ver meu profile</a>
 
    {{else}}
-   <a href="/signup">cadastro</a>
-   <a href="/login">login</a>
+   <a href="/auth/signup">cadastro</a>
+   <a href="/auth/login">login</a>
    {{/if}}
 
  </div>
