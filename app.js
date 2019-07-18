@@ -12,9 +12,8 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
-const Drinks = require('./models/drinks');
+// const Drinks = require('./models/drinks');
 const hbs = require('hbs');
-const nodemailer = require('nodemailer')
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 

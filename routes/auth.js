@@ -1,6 +1,6 @@
 const express = require("express");
 const authRoutes = express.Router();
-const drinksRoutes = express.Router();
+// const drinksRoutes = express.Router();
 const passport = require('passport');
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
@@ -10,6 +10,7 @@ const cloudinaryStorage = require('multer-storage-cloudinary');
 const {uploadCloud, uploadCloudUser} = require('../public/config/cloudinary');
 const multer = require('multer')
 const nodemailer = require('nodemailer');
+
 
 // User model
 // const User = require("../models/user");
