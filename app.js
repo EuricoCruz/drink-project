@@ -40,6 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // adding flash as error handler middleware
 app.use(flash());
 hbs.registerPartials(__dirname + '/views/partials');
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // express session config
 app.use(session({
@@ -53,7 +54,6 @@ app.use(session({
 }));
 
 // passport config
-
 
 // user serialization
 passport.serializeUser((user, cb) => {
