@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700&display=swap');
+/* set  */
+* {
+  margin: 0%;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Maven Pro', sans-serif;
+  background-color: rgb(92, 109, 114);
+}
+/*>>>>>>>>>>>>> Home page <<<<<<<<<<<<<*/
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 5%;
+}
+nav img {
+  width: 15%;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* avatar */
+.menu img {
+  height: 59px;
+  clip-path: circle(30px at center);
+}
+.menu a {
+  align-self: flex-end;
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 20px;
+  border: 0.1px solid white;
+}
+.menu a:hover {
+  padding: 20px;
+  background-color: pink;
+  color: black;
+  text-decoration: none;
+  transition: .3s ease background;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.highlight {
+  display: flex;
+  padding: 0 5%;
+  align-items: center;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+}
+.intro-text {
+  font-size: 40pt;
+  color: white;
+  width: 50%;
+}
+.description {
+  margin-top: 2%;
+  font-size: 20pt;
+  font-weight: 400;
+  color: white;
+}
+.destaque {
+  height: 400px;
+  width: 50%;
+  background-color: aqua;
+}
+
+
+.drink-card img{
+  border: 1px solid red;
+  height: 80px;
+  width: 100px;
+}
+
