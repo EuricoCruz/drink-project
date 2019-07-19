@@ -1,0 +1,17 @@
+.container-home{
+  display: flex;
+  flex-direction: column;
+ }
+ 
+ .main-question,
+ .login-title,
+ .signup-title{
+  color: blanchedalmond;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  align-items: center;
+  padding: 2% 5%;
+  text-align: center;
+ }
+ 

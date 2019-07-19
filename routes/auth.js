@@ -84,7 +84,7 @@ authRoutes.post("/signup", uploadCloudUser.single('photo'), (req, res, next) => 
   })
 })
 
-authRoutes.get("/login", ensureLoggedOut(), (req, res, next) => {
+authRoutes.get("/login", ensureLoggedOut('/auth/login'), (req, res, next) => {
   res.render("auth/login");
  });
 

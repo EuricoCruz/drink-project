@@ -1,9 +1,11 @@
 
-<div class="container">
+<div class="container-login">
 
-<h2 class="login-title">Login</h2>
+ <div class="main-question">
+   <h1>Login</h1>
+ </div>
 
-<form id="form" action="/auth/login" method="POST">
+<form class="form" action="/auth/login" method="POST">
 <div>
   <label for="username">Username:</label>
   <input type="text" name="username">
@@ -12,16 +14,18 @@
   <label for="password">Password:</label>
   <input type="password" name="password">
 </div>
+
 {{#if message}}
 <div class="error-message">{{ message }}</div>
 {{/if}}
  <button type="submit">Login</button>
+<br>
+<div class="division-login">
+  <hr>
+</div>
 
  {{#unless user}}
-  Home page
-  <div>
-    <a href="/auth/google">Login With Google</a>
-  </div>
+    <a class="social-login" href="/auth/google">Login With Google</a>
 {{/unless}}
 
 <p class="account-message">

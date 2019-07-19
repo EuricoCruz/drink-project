@@ -1,11 +1,12 @@
-<h2>O que você gostaria de beber hoje</h2>
-{{#each drink}}
-  {{> drinkCard this}}
-{{/each}}
+<div class="container-home">
+ <div class="main-question">
+   <h1>O que você gostaria de beber hoje?</h1>
+ </div>
 
+ <div class="drinkCard">
+   {{#each drink}}
+   {{> drinkCard this}}
+   {{/each}}
+ </div>
 
-
-
-
-
-
+</div>

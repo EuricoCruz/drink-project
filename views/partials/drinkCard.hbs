@@ -1,6 +1,8 @@
-<div class="drink-card">
-  <h1>{{this.name}}</h1>
-  <img class="drink-image" src="{{this.photo}}" alt="drink image" height="100" width="100">
-  <p>{{this.type}}</p>
-  <button><a href="/drinks/drink/{{_id}}">view recipe</a></button>
+<div class="background-card">
+    <a href="/drinks/drink/{{_id}}"><img class="drink-image" src="{{this.photo}}" alt="drink image"></a>
+  <div class="drink-text">
+    <p class="drink-type">{{this.type}}</p>
+    <h1 class="drink-name">{{this.name}}</h1>
+    {{!-- <button class="drink-button"><a href="/drinks/drink/{{_id}}">view recipe</a></button> --}}
+  </div>
 </div>
