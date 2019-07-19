@@ -23,7 +23,7 @@ profileRoutes.get('/edit-profile', ensureLoggedIn(), (req, res) => {
 //edit
 profileRoutes.post('/editProfile/:userId', uploadCloudUser.single('photo'), ensureLoggedIn(), (req, res) => {
   const userId = req.params.userId;
-  const photo = undefined;
+  let photo = undefined;
   if(req.file) {
     photo = req.file.secure_url;
   }
