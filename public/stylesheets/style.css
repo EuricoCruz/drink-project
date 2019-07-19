@@ -4,21 +4,16 @@
  padding: 0;
  box-sizing: border-box;
  font-family: 'Josefin Sans', sans-serif;
-<<<<<<< HEAD
+
  background-color: rgb(92, 109, 114);
 }
-/
->>>>>>>>>> Home page <<<<<<<<<<<<<
-/
-=======
-}
-/*>>>>>>>>>>>>> Home page <<<<<<<<<<<<<*/
+
 
 body {
  /* background-color: rgb(92, 109, 114); */
  background-color: rgb(68, 61, 61);
 }
->>>>>>> dev
+
 nav {
  display: flex;
  justify-content: space-between;
@@ -29,7 +24,7 @@ nav {
 
 
 .logo img{
- height: 30px;
+ height: 29px;
 }
 
 .menu {
