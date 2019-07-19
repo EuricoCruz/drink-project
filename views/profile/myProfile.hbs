@@ -1,20 +1,46 @@
-<h1>DrinkBud</h1>
-<img src="{{user.photo}}" alt="minha foto">
-<h2>nome: {{user.name}}</h2>
-<h3>idade: {{user.age}}</h3>
-<h3>cidade: {{ user.city }}</h3>
-<h3>email {{user.email}}</h3>
-<h3>telefone: {{user.phone}}</h3>
-<h3>profissão: {{user.profession}}</h3>
+<div class="container-perfil">
+  <div class="main-question">
+    <h1>Meu perfil</h1>
+    </div>
+</div>
+<div class="profile-page">
+  
+<div class="container-info">
+  <div class="profile-photo">
+    <img src="{{user.photo}}" alt="minha foto">
+  </div>
 
-<button><a href="/profile/edit-profile">editar perfil</a>
-<button><a href="/profile/delete/{{user._id}}">delete</a></button>
-</button>
-<hr>
+  <div class="profile-info">
+    <p><span class="mini-info">nome:</span><br>{{user.name}}</p>
+    <p><span class="mini-info">idade:</span><br>{{user.age}}</p>
+    <p><span class="mini-info">cidade:</span><br>{{ user.city }}</p>
+    <p><span class="mini-info">e-mail:</span><br>{{user.email}}</p>
+    <p><span class="mini-info">profissão:</span><br>{{user.profession}}</p>
+    <div class="buttons">
+      <button class="edit-button"><a href="/profile/edit-profile">Editar perfil</a></button>
+      <button class="delete-button"><a href="/profile/delete/{{user._id}}">Deletar</a></button>
+    </div>
 
-<h1>Meus drinques:</h1>
+  </div>
+
+</div>
+<div class="division">
+  <hr>
+</div>
+
+<div class="container-mydrinks">
+  <div class="mydrinks-title">
+    <h1>Meus drinks</h1>
+    </div>
+</div>
+<div class="mydrinks-container">
+
 {{#each drink}}
   {{> drinkCard this}}
 {{/each}}
-{{!-- <button><a href="edit-drinques">editar drinques</a> --}}
-<button><a href="/drinks/add-drink">adicionar drinque</a>
+</div>
+<button class="add-drink"><a href="/drinks/add-drink">Adicionar drinque</a>
+
+</div>
+
+

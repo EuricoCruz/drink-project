@@ -1,6 +1,7 @@
 /* Login 
  Signin */
- .container {
+ .container-login{
+  flex-direction: column;
   display: flex;
   justify-content: center;
   padding: 5%;
@@ -9,10 +10,7 @@
   font-size: 40pt;
   color: white;
 }
-.login-title {
-  font-size: 40pt;
-  color: white;
-}
+
 /* Signin - Forms */
 #form {
   margin: 10px auto;

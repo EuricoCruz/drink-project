@@ -1,0 +1,62 @@
+.drinkCard,
+.mydrinks-container{
+  display: flex;
+  padding: 2% 5%;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.background-card {
+  display: flex;
+  height: 300px;
+  width: 300px;
+  position: relative;
+  border-radius: 5px;
+  flex-wrap: nowrap;
+}
+
+.drink-image{
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+  
+}
+
+.drink-image:hover {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  opacity: 0.3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.drink-text {
+  top: 100px;
+  position:absolute;
+  width: 50%;
+  padding: 5%;
+}
+
+
+.drink-name {
+  color: whitesmoke;
+  font-size: 20px;
+}
+
+.drink-type {
+  font-size: 15px;
+  color: whitesmoke;
+}
+
+.division{
+  margin-top: 2%;
+  padding: 4%;
+}
+
+/* drink page */
+
+
+
+

@@ -1,0 +1,92 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-perfil{
+  display: flex;
+  flex-direction: column;
+ }
+
+ .container-perfil,
+ .container-mydrinks{
+  display: flex;
+  flex-direction: column;
+ }
+ 
+ .main-question,
+ .mydrinks-title {
+  color: blanchedalmond;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  align-items: center;
+  padding: 2% 5%;
+  text-align: center;
+ }
+
+ .container-info {
+  display: flex;
+  justify-content: center;
+ }
+
+ .profile-photo img{
+  height: 350px;
+  width: 350px;
+  border-radius: 5px 0px 0px 5px;
+ }
+
+ .profile-info {
+  color: white;
+  font-size: 18px;
+  padding: 3%;
+  height: 350px;
+  width: 350px;
+  border-radius: 0px 5px 5px 0px;
+  background-color: #333333;
+ }
+
+ .profile-info p {
+   margin-bottom: 5%;
+ }
+
+ .mini-info{
+   font-size: 14px;
+   color:white;
+ }
+
+ .add-drink {
+   margin-top: 2%;
+   color: #333333;
+   height: 50px;
+   background-color: blanchedalmond;
+   border: none;
+ }
+
+ .add-drink a{
+   color:#333333; 
+  font-size: 15px;
+  text-decoration: none;
+ }
+
+ .edit-button,
+ .delete-button {
+   padding: 5px;
+   border: 2px solid black;
+   border-radius: 5px;
+  }
+  
+  .edit-button {
+    background-color: blanchedalmond;
+ }
+
+ .delete-button {
+   background-color: rgb(146, 25, 25);
+ }
+
+ .buttons a {
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+ }
+

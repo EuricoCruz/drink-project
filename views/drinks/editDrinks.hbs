@@ -1,28 +1,24 @@
 <h2>Vamos modificar o seu drink</h2>
 
-<form action="/save-edit/{{drink._id}}" method="post" enctype="multipart/form-data">
+<form action="/drinks/save-edit/{{drink._id}}" method="post" enctype="multipart/form-data">
   
-  <label for="">name:</label>
+  <label for="">nome:</label>
   <input type="text" name="name" value="{{drink.name}}">
 <br><br>
  
-  <label for="">Recipe:</label>
+  <label for="">Como fazer:</label>
   <textarea name="recipe" id="recipe" cols="30" rows="10">{{drink.recipe}}</textarea>
-<br><br>
-
-  <label for="">ingredients:</label>
-  <input type="text" name="ingredients" value="{{drink.ingredients}}">
 <br><br>
 
   <label>type</label>
   <select name="type" id="type" value="{{drink.type}}">
-    <option value="alcoholic">alcoholic</option>
-    <option value="non alcoholic">non alcoholic</option>
+    <option value="alcoholic">Alcólico</option>
+    <option value="non alcoholic">Não Alcólico</option>
   </select>
   <br><br>
   {{!-- <img src="{{drink.photo}}" alt=""> --}}
  
-  <label>Image</label>
+  <label>Foto</label>
   <input type="file" name="photo">
   <br><br>
  

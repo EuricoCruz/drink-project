@@ -23,12 +23,16 @@ profileRoutes.get('/edit-profile', ensureLoggedIn(), (req, res) => {
 //edit
 profileRoutes.post('/editProfile/:userId', uploadCloudUser.single('photo'), ensureLoggedIn(), (req, res) => {
   const userId = req.params.userId;
-  const photo = req.file.secure_url;
+  const photo = undefined;
+  if(req.file) {
+    photo = req.file.secure_url;
+  }
   const {name, email, age, city, profession, phone} = req.body;
-  User.update({_id: userId}, {$set: {name, email, photo, age, city, profession, phone, photo}})
+  User.update({_id: userId}, {$set: {name, email, photo, age, city, profession, phone, photo}}, {omitUndefined: true})
   .then(user => res.redirect('/profile'))
   .catch(err => console.log(err))
-})  
+})
+
 profileRoutes.get('/delete/:userId', ensureLoggedIn(), (req, res) => {
   console.log('profile delete')
   const userId = req.params.userId
