@@ -25,7 +25,7 @@ authRoutes.get("/signup", ensureLoggedOut(), (req, res, next) => {
 
 authRoutes.post("/signup", uploadCloudUser.single('photo'), (req, res, next) => {
   const {username, password, email, age, role} = req.body;
-  const photo = undefined;
+  let photo = undefined;
   if(req.file) {
     photo = req.file.secure_url;
   }
