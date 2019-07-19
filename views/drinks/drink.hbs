@@ -1,17 +1,27 @@
-<img src="{{drink.photo}}" alt="">
-<h1>{{drink.name}}</h1>
 
-{{#each drink.ingredients}}
-<ul>
-  <li>{{this}}</li>
-</ul>
-{{/each}}
+<div class="container-perfil">
+  <div class="main-question">
+    <h1>{{drink.name}}</h1>
+    </div>
+</div>
 
-  {{#if isOwner}}
-    <button><a href="/drinks/delete/{{drink._id}}">delete</a></button>
-    <button><a href="/drinks/edit-drink/{{drink._id}}">editar</a></button>
-  {{/if}}
+<div class="profile-page">
+<div class="container-info">
 
-<h4>Recipe</h4>
-<p>{{drink.recipe}}</p>
-<h3>{{drink.type}}</h3>
+  <div class="profile-photo">
+    <img src="{{drink.photo}}" alt="">
+  </div>
+    <div class="drink-info">
+      <p><span class="mini-info">Como preparar:</span><br>{{drink.recipe}}</p><br><br>
+      <p><span class="mini-info">Tipo:</span><br>{{drink.type}}</p><br><br>
+      <p><span class="mini-info">Drink feito por:</span><br><a class="drink-maker" href="/profile/userprofile/{{drink.owner._id}}">{{drink.owner.name}}</a></p>
+      <br>
+        <div class="drink-buttons">
+          {{#if isOwner}}
+            <button class="edit-button-drink"><a href="/drinks/edit-drink/{{drink._id}}">Editar</a></button>
+            <button class="delete-button-drink"><a href="/drinks/delete/{{drink._id}}">Delete</a></button>
+          {{/if}}
+        </div>
+      </div>
+  </div>
+</div>

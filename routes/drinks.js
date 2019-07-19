@@ -16,16 +16,16 @@ drinksRoutes.get('/add-drink', (req, res) => {
 
 drinksRoutes.post('/drinkAdd', uploadCloud.single('photo'), ensureLoggedIn('/auth/login'), (req, res) => {
   const user = req.user;
-  const photo = undefined;
+  let photo = undefined;
   if(req.file) {
     photo = req.file.secure_url;
   }
-  const {name, recipe, ingredients, type, owner} = req.body;
+  const {name, recipe, type, owner} = req.body;
   Drinks.findOne({name})
   
   .then(name => {
     if(name !==  null) {
-      res.render("/drinks/addDrink", { message: "This name already exist"})
+      res.render("drinks/addDrink", { message: "This name already exist"})
       return; 
     }
   })
@@ -45,29 +45,20 @@ drinksRoutes.get('/drink/:id', ensureLoggedIn('/auth/login'), (req, res) => {
   const drinkId = req.params.id;
   const user = req.user;
   let isOwner = false;
-
-  Drinks.findById(drinkId)
+  
+  Drinks.findById(drinkId).populate("owner")
   .then((drink) => {
-    if(drink.owner.toString() === user._id.toString()) {
+    console.log(drink.owner)
+    if(drink.owner.id.toString() === user._id.toString()) {
       isOwner = true;
     }
-
     if (isOwner) {
       res.render('drinks/drink', { drink, user, isOwner})
     } else {
       res.render('drinks/drink', { drink, user})
     }
   })
-  .catch(err => (err))
-  // Drinks.findById(drinkId)
-  // .then((drink) => {
-  //   if(isOwner) {
-  //     res.render('drinks/drink', { drink, user, isOwner})
-  //   } else {
-  //     res.render('drinks/drink', { drink, user})
-  //   }
-  // })
-  // .catch(err => console.log(err))
+  .catch(err => console.log(err))
 });
 
 drinksRoutes.get('/edit-drink/:id', (req, res) => {

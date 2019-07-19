@@ -4,7 +4,8 @@
  }
  
  .main-question,
- .login-title{
+ .login-title,
+ .signup-title{
   color: blanchedalmond;
   font-size: 14px;
   letter-spacing: 3px;

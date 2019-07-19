@@ -3,7 +3,7 @@
   display: flex;
   padding: 2% 5%;
   justify-content: space-around;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .background-card {
@@ -13,6 +13,7 @@
   position: relative;
   border-radius: 5px;
   flex-wrap: nowrap;
+  margin-top: 5%;
 }
 
 .drink-image{
@@ -58,5 +59,42 @@
 /* drink page */
 
 
+.drink-maker{
+  text-decoration: none;
+  color:white;
+}
 
+ .drink-info {
+   color: white;
+   font-size: 18px;
+   padding: 3%;
+   height: 350px;
+   width: 450px;
+   border-radius: 0px 5px 5px 0px;
+   background-color: #333333;
+ }
 
+ .edit-button-drink,
+ .delete-button-drink {
+   padding: 10px;
+   border: 2px solid black;
+   font-size: 15px;
+   
+  }
+
+  .edit-button-drink {
+    background-color: blanchedalmond;
+ }
+
+ .delete-button-drink {
+   background-color: #eb5757;
+ }
+
+.drink-buttons {
+  margin-top: 3%;
+}
+
+.drink-buttons a {
+  text-decoration: none;
+  color: black;
+}

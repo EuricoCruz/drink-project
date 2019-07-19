@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const drinkSchema = new Schema({
-  name: { type: String, required: true },
-  photo: {type: String},
+  name: String,
+  photo: String,
   recipe: String,
-  type: { type: String, enum: ['Alcólico', 'Não Alcólico'], required: true }, 
+  type: { type: String, enum: ['Alcólico', 'Não Alcólico']}, 
   owner: { type: Schema.Types.ObjectId, ref: "User" },
 }, {
   timestamps: true,

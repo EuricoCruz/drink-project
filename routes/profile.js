@@ -41,6 +41,33 @@ profileRoutes.get('/delete/:userId', ensureLoggedIn(), (req, res) => {
   .catch(err => console.log(err))
 })
 
+profileRoutes.get('/userprofile/:userId', ensureLoggedIn(), (req, res) => {
+  const userId = req.params.userId;
+  Drinks.find({ owner: userId}).populate("owner")
+  .then(drink => {
+    const user = drink[0].owner;
+    console.log(user)
+    res.render('profile/userProfile', {user});
+  })
+  .catch(err => console.log(err))
+})
+
+// const drinkId = req.params.id;
+//   const user = req.user;
+//   let isOwner = false;
+
+//   Drinks.findById(drinkId).populate("owner")
+//   .then((drink) => {
+//     if(drink.owner.toString() === user._id.toString()) {
+//       isOwner = true;
+//     }
+
+//     if (isOwner) {
+//       res.render('drinks/drink', { drink, user, isOwner})
+//     } else {
+//       res.render('drinks/drink', { drink, user})
+//     }
+//   })
 
 
 module.exports = profileRoutes;

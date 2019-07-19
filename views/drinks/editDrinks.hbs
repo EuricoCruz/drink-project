@@ -1,6 +1,6 @@
 <h2>Vamos modificar o seu drink</h2>
 
-<form action="/drinks/save-edit/{{drink._id}}" method="post" enctype="multipart/form-data">
+<form class="form" action="/drinks/save-edit/{{drink._id}}" method="post" enctype="multipart/form-data">
   
   <label for="">nome:</label>
   <input type="text" name="name" value="{{drink.name}}">
@@ -12,8 +12,8 @@
 
   <label>type</label>
   <select name="type" id="type" value="{{drink.type}}">
-    <option value="alcoholic">Alcólico</option>
-    <option value="non alcoholic">Não Alcólico</option>
+    <option value="Alcólico">Alcólico</option>
+    <option value="Não Alcólico">Não Alcólico</option>
   </select>
   <br><br>
   {{!-- <img src="{{drink.photo}}" alt=""> --}}

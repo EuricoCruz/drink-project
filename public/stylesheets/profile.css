@@ -28,6 +28,7 @@
  .container-info {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
  }
 
  .profile-photo img{
@@ -73,7 +74,6 @@
  .delete-button {
    padding: 5px;
    border: 2px solid black;
-   border-radius: 5px;
   }
   
   .edit-button {
@@ -81,7 +81,7 @@
  }
 
  .delete-button {
-   background-color: rgb(146, 25, 25);
+   background-color: #eb5757;
  }
 
  .buttons a {
